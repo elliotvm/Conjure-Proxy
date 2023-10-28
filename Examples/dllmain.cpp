@@ -1,6 +1,4 @@
-// DLL proxying template made from a dnsapi.dll proxy
-// Runs the conjure managed DLL when called by a process
-// Disables Event Tracing for Windows
+// POC run C# assembly through C Proxy DLL
 
 #include "pch.h"
 #include <windows.h>
@@ -25,7 +23,7 @@ int runManaged() {
                 if (runtimeHost->Start() == S_OK)
                 {
                     DWORD pReturnValue;
-                    runtimeHost->ExecuteInDefaultAppDomain(L"C:\\Users\\vboxuser\\source\\repos\\cs_pop_box_dll\\cs_pop_box_dll\\bin\\Release\\cs_pop_box_dll.dll", L"dllNamespace.dllClass", L"ShowMsg", L"It works!!", &pReturnValue);
+                    runtimeHost->ExecuteInDefaultAppDomain(L"C:\\s_pop_box_dll.dll", L"dllNamespace.dllClass", L"ShowMsg", L"It works!!", &pReturnValue);
 
                     runtimeInfo->Release();
                     metaHost->Release();

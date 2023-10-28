@@ -1,3 +1,5 @@
+//Call C# Assembly from a C program
+//Disables Event Tracing for Windows
 #include <metahost.h>
 #pragma comment(lib, "mscoree.lib")
 
