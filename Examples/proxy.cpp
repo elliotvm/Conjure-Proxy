@@ -1,5 +1,4 @@
 // POC run C# assembly through C Proxy DLL
-
 #include "pch.h"
 #include <windows.h>
 #include <iostream>
