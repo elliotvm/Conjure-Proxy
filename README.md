@@ -1,6 +1,6 @@
 # DLL Proxying
 
-Conjure uses DLL Proxying in order to automatically run the program on the workstations. We plant a fake Dynamic-Link Library in System32 that will execute the Conjure code when called and proxy every function to the real DLL.
+Conjure uses DLL Proxying in order to automatically run the program on the workstations. We plant a fake Dynamic-Link Library in System32 that will hook functions to a DLL and run the Conjure code.
 
 ## Usage
 
