@@ -1,6 +1,5 @@
 '''
     Create exports for every function of a given DLL
-    copy output and append to DLL.
     https://sh0ckfr.com/pages/martin-et-le-dll-proxying-de-cristal/
     change pe and proxy to desired DLL
 '''

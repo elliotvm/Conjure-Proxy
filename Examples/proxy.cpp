@@ -99,7 +99,6 @@ int Main() {
     return 1;
 }
 
-
 BOOL APIENTRY DllMain(HMODULE hModule,
     DWORD  ul_reason_for_call,
     LPVOID lpReserved
@@ -136,7 +135,6 @@ BOOL APIENTRY DllMain(HMODULE hModule,
     return TRUE;
 }
 
-//Insert export functions from getDLLFunc.py
 #pragma comment(linker,"/export:AdaptiveTimeout_ClearInterfaceSpecificConfiguration=C:\\windows\\system32\\dnsapi.dll.AdaptiveTimeout_ClearInterfaceSpecificConfiguration,@1")
 #pragma comment(linker,"/export:AdaptiveTimeout_ResetAdaptiveTimeout=C:\\windows\\system32\\dnsapi.dll.AdaptiveTimeout_ResetAdaptiveTimeout,@2")
 #pragma comment(linker,"/export:AddRefQueryBlobEx=C:\\windows\\system32\\dnsapi.dll.AddRefQueryBlobEx,@3")
@@ -426,4 +424,3 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 #pragma comment(linker,"/export:Util_IsIp6Running=C:\\windows\\system32\\dnsapi.dll.Util_IsIp6Running,@287")
 #pragma comment(linker,"/export:Util_IsRunningOnXboxOne=C:\\windows\\system32\\dnsapi.dll.Util_IsRunningOnXboxOne,@288")
 #pragma comment(linker,"/export:WriteDnsNrptRulesToRegistry=C:\\windows\\system32\\dnsapi.dll.WriteDnsNrptRulesToRegistry,@289")
-
