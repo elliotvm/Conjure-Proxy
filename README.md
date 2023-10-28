@@ -1,6 +1,10 @@
 # DLL Proxying
 
+<<<<<<< HEAD
 This code runs a C# assembly from a C/C++ DLL Proxy. Originally made for the Conjure Project.
+=======
+Conjure uses DLL Proxying in order to automatically run the program on the workstations. We plant a fake Dynamic-Link Library in System32 that will hook functions to a DLL and run the Conjure code.
+>>>>>>> 69018586008d7afd5dde94bbb2bce77075c712a7
 
 ## Usage
 
