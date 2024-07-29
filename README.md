@@ -1,6 +1,6 @@
 # DLL Proxying
 
-Run C# assembly from a C/C++ DLL Proxy.
+Disables ETW and runs C# assembly from a C/C++ DLL Proxy.
 
 ## Usage
 
@@ -14,5 +14,3 @@ $ python3 getExports.py <target DLL>
 ```
 
  - Append the output of ```getExports.py``` to the end of the the DLL file and compile 
-
- - Plant proxy DLL under the original name and location
