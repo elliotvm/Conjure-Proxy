@@ -1,6 +1,6 @@
 # DLL Proxying
 
-This code runs a C# assembly from a C/C++ DLL Proxy. Originally made for the Conjure project.
+Run C# assembly from a C/C++ DLL Proxy. Originally made for the Conjure project.
 
 ## Usage
 
