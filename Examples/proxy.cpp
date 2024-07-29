@@ -32,9 +32,7 @@ int runManaged() {
     return 0;
 }
 
-void disableETWx86() {
-    //This is a basic version of disabling Event tracing
-    //overwrites EtwEventWrite to return directly when called
+void disableETW() {
 
     DWORD oldProt, oldOldProt;
 
@@ -45,25 +43,7 @@ void disableETWx86() {
     // Allow writing to page
     VirtualProtect(eventWrite, 4, PAGE_EXECUTE_READWRITE, &oldProt);
 
-    // Patch with "ret 14" on x86
-    memcpy(eventWrite, "\xc2\x14\x00\x00", 4);
-
-    // Return memory to original protection
-    VirtualProtect(eventWrite, 4, oldProt, &oldOldProt);
-}
-
-void disableETWx64() {
-
-    DWORD oldProt, oldOldProt;
-
-    //DISABLE ETW
-    // Get the EventWrite function
-    void* eventWrite = GetProcAddress(LoadLibraryA("ntdll"), "EtwEventWrite");
-
-    // Allow writing to page
-    VirtualProtect(eventWrite, 4, PAGE_EXECUTE_READWRITE, &oldProt);
-
-    // Patch with "xor rax, rax; ret" on x64
+    // Patch with "xor rax, rax; ret"
     memcpy(eventWrite, "\x48\x33\xc0\xc3", 4);
 
     // Return memory to original protection
@@ -87,9 +67,7 @@ int Main() {
         }
         else {
             //Disable Event Tracing for Windows
-            //uncomment the correct target architecture
-            //disableETWx86();
-            disableETWx64();
+            disableETW();
 
             //Create CLR hosting interface and call C# DLL
             runManaged();
